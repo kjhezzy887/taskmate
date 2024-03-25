@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Edit Task - Taskmate</title>
+{% endblock title %}
+
+{% block content %}
+</br>
+{% if obj.manager == request.user %}
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" class="form-control p-2 g-col-4" name="task" placeholder="{{ obj.task }}" value="{{obj.task}}">
+        <input type="hidden" name="done" value="{{obj.done}}">
+        <button type="submit" class="btn btn-primary g-col-2">Update Task</button>
+    </form>
+{% else %}
+<p>Access Denied</p>
+{% endif %}
+
+{% endblock content %}
